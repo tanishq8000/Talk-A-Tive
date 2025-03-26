@@ -155,7 +155,7 @@ const TriggerButton = ({ children }) => {
 };
 const SideDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log("isOpen state:", isOpen, typeof isOpen);
+  //console.log("isOpen state:", isOpen, typeof isOpen);
 
   const history = useHistory();
   const logoutHandler = () => {

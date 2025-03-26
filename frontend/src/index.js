@@ -15,11 +15,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // We installed Chakra UI in our frontend and for that we wrapped our APP into <Provider> for more visit offcial website of Chakra UI
 root.render(
-  <ChatProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <ChatProvider>
       <Provider>
         <App />
       </Provider>
-    </BrowserRouter>
-  </ChatProvider>
+    </ChatProvider>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
