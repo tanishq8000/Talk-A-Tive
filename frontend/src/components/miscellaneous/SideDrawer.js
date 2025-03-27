@@ -8,7 +8,8 @@ import {
   Input,
   Spinner,
   Drawer,
-  CloseButton,
+  Menu,
+  Portal,
 } from "@chakra-ui/react";
 import { Tooltip } from "E:/MERN CHAT APP/frontend/src/components/ui/tooltip.jsx";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu";
@@ -16,12 +17,12 @@ import { FaBell, FaCircleChevronDown } from "react-icons/fa6";
 import { ChatState } from "../../Context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import NotificationBadge, { Effect } from "react-notification-badge";
 
 import {
   DrawerActionTrigger,
   DrawerBackdrop,
   DrawerBody,
-  DrawerCloseTrigger,
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
@@ -33,6 +34,7 @@ import { toaster } from "../ui/toaster";
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../userAvataar/UserListItem";
+import { getSender } from "../../config/ChatLogics";
 
 const TriggerButton = ({ children }) => {
   const [search, setSearch] = useState("");
@@ -163,7 +165,7 @@ const SideDrawer = () => {
     history.push("/");
   };
 
-  const { user } = ChatState();
+  const { user, notification, setNotification, setSelectedChat } = ChatState();
   return (
     <>
       <Box
@@ -206,10 +208,39 @@ const SideDrawer = () => {
         <div>
           <MenuRoot>
             <MenuTrigger asChild>
-              <Button color="black" size="xl">
+              <Button color="black" size="sm">
+                <NotificationBadge
+                  count={notification.length}
+                  effect={Effect.SCALE}
+                />
                 <FaBell />
               </Button>
             </MenuTrigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content>
+                  {!notification.length && "No New Messages"}
+                  {notification.map((notif) => (
+                    <MenuItem
+                      key={notif._id}
+                      onClick={() => {
+                        setSelectedChat(notif.chat);
+                        setNotification(
+                          notification.filter((n) => n !== notif)
+                        );
+                      }}
+                    >
+                      {notif.chat.isGroupChat
+                        ? `New Message in ${notif.chat.chatName}`
+                        : `New Message from ${getSender(
+                            user,
+                            notif.chat.users
+                          )}`}
+                    </MenuItem>
+                  ))}
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
           </MenuRoot>
 
           <MenuRoot>
