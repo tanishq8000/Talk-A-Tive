@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChatState } from "../Context/ChatProvider";
+import { useChatState } from "../Context/ChatProvider";
 import { Box, Field, IconButton, Input, Spinner, Text } from "@chakra-ui/react";
 import { IoArrowBack } from "react-icons/io5";
 import { getSender, getSenderFull } from "../config/ChatLogics";
@@ -25,7 +25,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
 
   const { user, selectedChat, setSelectedChat, notification, setNotification } =
-    ChatState();
+    useChatState();
 
   const defaultOptions = {
     loop: true,
@@ -166,7 +166,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             w="100%"
             fontFamily="Work sans"
             display="flex"
-            justifyContent={{ base: "space-between" }}
+            //justifyContent={{ base: "space-between" }}
             alignItems="center"
             color="black"
           >
@@ -178,8 +178,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             </IconButton>
             {!selectedChat.isGroupChat ? (
               <>
-                {getSender(user, selectedChat.users)}
-                <ProfileModal user={getSenderFull(user, selectedChat.users)} />
+                <ProfileModal
+                  isHeader={false}
+                  user={getSenderFull(user, selectedChat.users)}
+                />
+                <span style={{ marginLeft: "5px" }}>
+                  {getSender(user, selectedChat.users)}
+                </span>
               </>
             ) : (
               <>

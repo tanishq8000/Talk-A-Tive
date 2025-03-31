@@ -1,4 +1,11 @@
-import { Button, IconButton, Input, Stack, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Input,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import {
   DialogActionTrigger,
   DialogBody,
@@ -9,13 +16,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { IoMdEye } from "react-icons/io";
 
-const ProfileModal = ({ user, children }) => {
+const ProfileModal = ({ user, isHeader }) => {
   return (
     <DialogRoot placement="center" size="sm">
       <DialogTrigger>
-        {children ? (
+        {/* {children ? (
           <Button asChild variant="plain" size="sm">
             My Profile
           </Button>
@@ -23,6 +29,17 @@ const ProfileModal = ({ user, children }) => {
           <IconButton display={{ base: "flex" }}>
             <IoMdEye />
           </IconButton>
+        )} */}
+
+        {!isHeader ? (
+          <Avatar.Root size="lg">
+            <Avatar.Fallback name={user.name} />
+            <Avatar.Image src={user.pic} />
+          </Avatar.Root>
+        ) : (
+          <Button variant="plain" size="sm">
+            My Profile
+          </Button>
         )}
       </DialogTrigger>
       <DialogContent>
@@ -46,7 +63,8 @@ const ProfileModal = ({ user, children }) => {
                   alt={user.name || "User profile"}
                   style={{
                     width: "150px",
-                    borderRadius: "50%",
+                    borderRadius: "100%",
+                    height: "150px",
                   }}
                 />
               ) : (

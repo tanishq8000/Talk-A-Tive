@@ -6,9 +6,11 @@ import { toaster } from "E:/MERN CHAT APP/frontend/src/components/ui/toaster.jsx
 
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [email, setEmail] = useState();
+  const { setUser } = useChatState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -46,6 +48,7 @@ const Login = () => {
         position: "bottom",
         type: "success",
       });
+      setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
       history.push("/chats");

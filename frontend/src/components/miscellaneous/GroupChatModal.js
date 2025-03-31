@@ -17,7 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { ChatState } from "../../Context/ChatProvider";
+import { useChatState } from "../../Context/ChatProvider";
 import axios from "axios";
 import { toaster } from "../ui/toaster";
 import UserListItem from "../userAvataar/UserListItem";
@@ -30,7 +30,7 @@ const GroupChatModal = ({ children }) => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const { user, chats, setChats } = ChatState();
+  const { user, chats, setChats } = useChatState();
 
   const handleSearch = async (query) => {
     setSearch(query);

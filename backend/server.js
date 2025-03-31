@@ -14,6 +14,8 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 
+const path = require("path");
+
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 // TO config .env file
@@ -31,17 +33,36 @@ app.use(express.json());
 // Api endpoint to get data
 // Here first parameter is route on which we get data and
 // second is callback function - req ==> what we get from url or from user and res ==> what we send to user
-app.get("/", (req, res) => {
-  // It will print this when we start server
-  // TO start server use 'npm start'
-  res.send("API IS WORKING ABSOLUTELY FINE");
-});
+
+// app.get("/", (req, res) => {
+//   // It will print this when we start server
+//   // TO start server use 'npm start'
+//   res.send("API IS WORKING ABSOLUTELY FINE");
+// });
 
 app.use("/api/user", userRoutes);
 
 app.use("/api/chat", chatRoutes);
 
 app.use("/api/message", messageRoutes);
+
+// --------------------------deployment------------------------------
+
+const __dirname1 = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API Running");
+  });
+}
+
+// --------------------------deployment------------------------------
 
 // To handle the error in our express app, we are using these error handler middlewares
 // If any of the above url's will not work, then it falls in these 2 error handlers and give proper error messages

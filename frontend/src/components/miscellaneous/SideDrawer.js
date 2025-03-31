@@ -14,7 +14,7 @@ import {
 import { Tooltip } from "E:/MERN CHAT APP/frontend/src/components/ui/tooltip.jsx";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu";
 import { FaBell, FaCircleChevronDown } from "react-icons/fa6";
-import { ChatState } from "../../Context/ChatProvider";
+import { useChatState } from "../../Context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import NotificationBadge, { Effect } from "react-notification-badge";
@@ -41,7 +41,7 @@ const TriggerButton = ({ children }) => {
   const [loadingChat, setLoadingChat] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  const { user, setSelectedChat, chats, setChats } = ChatState();
+  const { user, setSelectedChat, chats, setChats } = useChatState();
 
   const handleSearch = async () => {
     if (!search) {
@@ -165,7 +165,8 @@ const SideDrawer = () => {
     history.push("/");
   };
 
-  const { user, notification, setNotification, setSelectedChat } = ChatState();
+  const { user, notification, setNotification, setSelectedChat } =
+    useChatState();
   return (
     <>
       <Box
@@ -256,7 +257,7 @@ const SideDrawer = () => {
             </MenuTrigger>
 
             <MenuContent>
-              <ProfileModal user={user} />
+              <ProfileModal isHeader={true} user={user} />
 
               <MenuItem>
                 <Button variant="plain" onClick={logoutHandler}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChatState } from "../Context/ChatProvider";
+import { useChatState } from "../Context/ChatProvider";
 import { toaster } from "../components/ui/toaster";
 import axios from "axios";
 import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
@@ -11,7 +11,8 @@ import GroupChatModal from "./miscellaneous/GroupChatModal";
 
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, user, chats, setChats } =
+    useChatState();
 
   const fetchChats = async () => {
     // console.log(user._id);
@@ -38,7 +39,8 @@ const MyChats = ({ fetchAgain }) => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
-  }, [fetchAgain]);
+    console.log("adjnsiusn");
+  }, []);
 
   return (
     <Box

@@ -5,13 +5,13 @@ import {
   isSameSenderMargin,
   isSameUser,
 } from "../config/ChatLogics";
-import { ChatState } from "../Context/ChatProvider";
+import { useChatState } from "../Context/ChatProvider";
 import { Avatar, Button } from "@chakra-ui/react";
 import { Tooltip } from "E:/MERN CHAT APP/frontend/src/components/ui/tooltip.jsx";
 import { useId } from "react";
 
 const ScrollableChat = ({ messages }) => {
-  const { user } = ChatState();
+  const { user } = useChatState();
   const id = useId();
 
   return (

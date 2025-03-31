@@ -11,11 +11,12 @@ import {
 } from "../ui/dialog";
 import { Box, Button, IconButton, Input, Spinner } from "@chakra-ui/react";
 import { IoMdEye } from "react-icons/io";
-import { ChatState } from "../../Context/ChatProvider";
+import { useChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvataar/UserBadgeItem";
 import axios from "axios";
 import { toaster } from "../ui/toaster";
 import UserListItem from "../userAvataar/UserListItem";
+import { IoSettings } from "react-icons/io5";
 
 const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
   const [groupChatName, setGroupChatName] = useState();
@@ -24,7 +25,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
   const [loading, setLoading] = useState(false);
   const [renameloading, setRenameloading] = useState(false);
 
-  const { selectedChat, setSelectedChat, user } = ChatState();
+  const { selectedChat, setSelectedChat, user } = useChatState();
 
   const handleAddUser = async (user1) => {
     if (selectedChat.users.find((u) => u._id === user1._id)) {
@@ -192,7 +193,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     <DialogRoot placement="center" size="sm">
       <DialogTrigger>
         <IconButton display={{ base: "flex" }}>
-          <IoMdEye />
+          <IoSettings />
         </IconButton>
       </DialogTrigger>
       <DialogContent>
