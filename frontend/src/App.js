@@ -2,7 +2,7 @@ import "./App.css";
 import { Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import ChatPage from "./Pages/ChatPage";
-import { Toaster } from "E:/MERN CHAT APP/frontend/src/components/ui/toaster.jsx";
+import { Toaster } from "../src/components/ui/toaster";
 
 function App() {
   return (

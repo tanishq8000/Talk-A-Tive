@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 
-import { Provider } from "E:/MERN CHAT APP/frontend/src/components/ui/provider.jsx";
+import { Provider } from "../src/components/ui/provider";
 
 import { BrowserRouter } from "react-router-dom";
 
