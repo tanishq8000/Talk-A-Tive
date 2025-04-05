@@ -10,7 +10,6 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Box, Button, IconButton, Input, Spinner } from "@chakra-ui/react";
-import { IoMdEye } from "react-icons/io";
 import { useChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvataar/UserBadgeItem";
 import axios from "axios";

@@ -11,7 +11,7 @@ import {
   Menu,
   Portal,
 } from "@chakra-ui/react";
-import { Tooltip } from "E:/MERN CHAT APP/frontend/src/components/ui/tooltip.jsx";
+import { Tooltip } from "../ui/tooltip";
 import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "../ui/menu";
 import { FaBell, FaCircleChevronDown } from "react-icons/fa6";
 import { useChatState } from "../../Context/ChatProvider";

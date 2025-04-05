@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { VStack, Input, Button } from "@chakra-ui/react";
 import { Field } from "../ui/field";
-import { PasswordInput } from "E:/MERN CHAT APP/frontend/src/components/ui/password-input.jsx";
-import {
-  Toaster,
-  toaster,
-} from "E:/MERN CHAT APP/frontend/src/components/ui/toaster.jsx";
+import { PasswordInput } from "../ui/password-input";
+import { toaster } from "../ui/toaster";
 
 import axios from "axios";
 import { useHistory } from "react-router-dom";

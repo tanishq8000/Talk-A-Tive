@@ -3,7 +3,6 @@ import { useChatState } from "../Context/ChatProvider";
 import { toaster } from "../components/ui/toaster";
 import axios from "axios";
 import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
-import { FaAudioDescription } from "react-icons/fa6";
 import ChatLoading from "./ChatLoading";
 import { getSender } from "../config/ChatLogics";
 import { IoMdAddCircle } from "react-icons/io";

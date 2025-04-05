@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  DrawerActionTrigger,
-  Input,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, DrawerActionTrigger, Input } from "@chakra-ui/react";
 import {
   DialogActionTrigger,
   DialogBody,
