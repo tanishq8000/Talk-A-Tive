@@ -1,3 +1,4 @@
 # Talk-A-Tive
 
-![](screenshots/App Dashboard.png)
+![](https://github.com/tanishq8000/Talk-A-Tive/blob/main/Screenshots/App_dashboard.png)
+
