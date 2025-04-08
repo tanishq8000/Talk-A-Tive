@@ -73,10 +73,11 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 // It print whenever we start the server in terminal
-const server = app.listen(
-  PORT,
-  console.log(`My node server started on port ${PORT}`.yellow.bold)
-);
+const server = require("http").createServer(app);
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
 
 // To craete a connextion at client side
 // PingTimeout is time till this connection is open while being inactive means after 60 sec of inactivity connection will be close to save the bandwidth
@@ -84,7 +85,10 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://talk-a-tive-fiz9.onrender.com",
+    origin: [
+      "http://localhost:3000", // for local dev
+      "https://talk-a-tive-fiz9.onrender.com", // replace with your actual frontend URL
+    ],
     // credentials: true,
   },
 });
