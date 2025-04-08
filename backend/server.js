@@ -85,10 +85,7 @@ server.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: [
-      "http://localhost:3000", // for local dev
-      "https://talk-a-tive-fiz9.onrender.com", // replace with your actual frontend URL
-    ],
+    origin: "*",
     // credentials: true,
   },
 });
